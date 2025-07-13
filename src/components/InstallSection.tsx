@@ -126,13 +126,13 @@ export const InstallSection: React.FC<InstallSectionProps> = ({ isDark }) => {
                 <code className={`font-mono ${
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  getmethatdawg deploy my-agent.py
+                  getmethatdawg deploy my-agent.py --auto-detect
                 </code>
               </div>
               <p className={`text-sm ${
                 isDark ? 'text-gray-400' : 'text-gray-600'
               }`}>
-                Deploy with decorators (recommended)
+                Deploy with auto-detection
               </p>
             </div>
             
@@ -144,31 +144,13 @@ export const InstallSection: React.FC<InstallSectionProps> = ({ isDark }) => {
                 <code className={`font-mono ${
                   isDark ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  getmethatdawg deploy my-agent.py --auto-detect
+                  getmethatdawg deploy my-agent.py --auto-detect --pre-auth
                 </code>
               </div>
               <p className={`text-sm ${
                 isDark ? 'text-gray-400' : 'text-gray-600'
               }`}>
-                Or let getmethatdawg auto-detect your functions
-              </p>
-            </div>
-            
-            <div className={`p-4 rounded-lg ${
-              isDark ? 'bg-gray-800' : 'bg-white'
-            }`}>
-              <div className="flex items-center justify-center space-x-2 mb-2">
-                <span className="text-amber-500 font-bold">3.</span>
-                <code className={`font-mono ${
-                  isDark ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                  getmethatdawg deploy my-agent.py --pre-auth
-                </code>
-              </div>
-              <p className={`text-sm ${
-                isDark ? 'text-gray-400' : 'text-gray-600'
-              }`}>
-                Seamless deployment without flyctl setup
+                Deploy with pre-auth (no flyctl setup required)
               </p>
             </div>
           </div>

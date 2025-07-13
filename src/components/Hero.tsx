@@ -73,7 +73,7 @@ export const Hero: React.FC<HeroProps> = ({ isDark }) => {
                 Auto Deploy
               </h3>
               <p className={`text-center text-sm md:text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                Automatically deploys to Fly.io with smart detection and decorators.
+                Automatically deploys to Fly.io with smart auto-detection.
               </p>
             </div>
 

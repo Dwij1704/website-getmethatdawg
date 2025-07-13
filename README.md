@@ -24,7 +24,7 @@ Perfect for developers who just want to ship their AI agents without the deploym
 
 - **🚀 Zero Configuration**: Deploy agents with literally zero config files
 - **🎯 Auto-Detection**: Automatically detects your agent functions and endpoints
-- **🔧 Endpoint Decorators**: Use simple decorators to define your endpoints
+- **🔧 Auto-Detection**: Automatically detects your functions and creates endpoints
 - **⚡ One Command Deploy**: From code to production in seconds
 - **🌐 Instant APIs**: Your functions become REST endpoints automatically
 - **🔒 Pre-Auth Support**: Seamless deployment without flyctl setup
@@ -48,28 +48,19 @@ Create a Python file with your AI agent logic:
 
 ```python
 # my_agent.py
-from getmethatdawg import endpoint
 
 class MyAwesomeAgent:
     
-    @endpoint("/chat")
     def chat(self, message: str) -> str:
         # Your AI logic here
         return f"Agent says: {message}"
     
-    @endpoint("/analyze") 
     def analyze_data(self, data: dict) -> dict:
         # More agent functionality
         return {"analysis": "complete", "insights": data}
 ```
 
-### 2. Deploy with Endpoints
-
-```bash
-getmethatdawg deploy my_agent.py
-```
-
-### 3. Or Use Auto-Detection
+### 2. Deploy with Auto-Detection
 
 ```bash
 getmethatdawg deploy my_agent.py --auto-detect
@@ -93,8 +84,7 @@ getmethatdawg deploy my_agent.py --pre-auth
 
 | Command | Description |
 |---------|-------------|
-| `getmethatdawg deploy <file>` | Deploy agent with endpoint decorators |
-| `getmethatdawg deploy <file> --auto-detect` | Auto-detect functions |
+| `getmethatdawg deploy <file> --auto-detect` | Auto-detect functions and deploy |
 | `getmethatdawg deploy <file> --pre-auth` | Deploy without flyctl setup |
 | `getmethatdawg --help` | Show help information |
 | `getmethatdawg --version` | Show version information |
@@ -120,7 +110,7 @@ Your Python File
        ↓
 getmethatdawg CLI
        ↓
-Auto-Detection/Decorators
+Auto-Detection
        ↓
 REST API Generation
        ↓

@@ -14,8 +14,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ isDark }) => {
     },
     {
       icon: Settings,
-      title: 'Smart Decorators',
-      description: 'Use optional decorators to define endpoints, or let our auto-detection handle everything for you.'
+      title: 'Smart Auto-Detection',
+      description: 'Just write functions and let our intelligent auto-detection handle everything for you.'
     },
     {
       icon: Zap,
@@ -97,24 +97,18 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ isDark }) => {
             isDark ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-700'
           }`}>
             <pre>{`# my_agent.py
-from getmethatdawg import endpoint
 
 class MyAwesomeAgent:
     
-    @endpoint("/chat")
     def chat(self, message: str) -> str:
         # Your AI logic here
         return f"Agent says: {message}"
     
-    @endpoint("/analyze") 
     def analyze_data(self, data: dict) -> dict:
         # More agent functionality
         return {"analysis": "complete", "insights": data}
 
-# Deploy with endpoints:
-# getmethatdawg deploy my_agent.py
-
-# Or use auto-detection:
+# Deploy with auto-detection:
 # getmethatdawg deploy my_agent.py --auto-detect`}</pre>
           </div>
         </div>
