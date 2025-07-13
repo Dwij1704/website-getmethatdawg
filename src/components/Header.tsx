@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ isDark, toggleTheme }) => {
   return (
-    <header className={`sticky top-0 z-40 backdrop-blur-md border-b transition-colors duration-300 ${
+    <header className={`sticky top-0 z-40 backdrop-blur-md border-b ${
       isDark 
         ? 'bg-gray-900/80 border-gray-700' 
         : 'bg-white/80 border-gray-200'
@@ -29,47 +29,10 @@ export const Header: React.FC<HeaderProps> = ({ isDark, toggleTheme }) => {
               getmethatdawg
             </h1>
           </div>
-          
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className={`hover:text-amber-500 transition-colors ${
-              isDark ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Features
-            </a>
-            <a href="#why" className={`hover:text-amber-500 transition-colors ${
-              isDark ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Why?
-            </a>
-            <a href="#install" className={`hover:text-amber-500 transition-colors ${
-              isDark ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Install
-            </a>
-            <a 
-              href="https://github.com/Dwij1704/getmethatdawg" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`hover:text-amber-500 transition-colors ${
-                isDark ? 'text-gray-300' : 'text-gray-600'
-              }`}
-            >
-              GitHub
-            </a>
-          </nav>
-
-          {/* Mobile menu button */}
-          <button className="md:hidden p-2 rounded-lg">
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-              <div className={`w-full h-0.5 ${isDark ? 'bg-white' : 'bg-gray-900'}`}></div>
-              <div className={`w-full h-0.5 ${isDark ? 'bg-white' : 'bg-gray-900'}`}></div>
-              <div className={`w-full h-0.5 ${isDark ? 'bg-white' : 'bg-gray-900'}`}></div>
-            </div>
-          </button>
 
           <button
             onClick={toggleTheme}
-            className={`p-2 rounded-lg transition-colors ${
+            className={`p-2 rounded-lg ${
               isDark 
                 ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
                 : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
