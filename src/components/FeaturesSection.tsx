@@ -97,9 +97,8 @@ export const FeaturesSection: React.FC<FeaturesSectionProps> = ({ isDark }) => {
             isDark ? 'bg-gray-900 text-gray-300' : 'bg-white text-gray-700'
           }`}>
             <pre>{`# my_agent.py
-from getmethatdawg import agent, endpoint
+from getmethatdawg import endpoint
 
-@agent
 class MyAwesomeAgent:
     
     @endpoint("/chat")
@@ -112,7 +111,7 @@ class MyAwesomeAgent:
         # More agent functionality
         return {"analysis": "complete", "insights": data}
 
-# Deploy with decorators:
+# Deploy with endpoints:
 # getmethatdawg deploy my_agent.py
 
 # Or use auto-detection:
