@@ -8,10 +8,37 @@ export const DogCursor: React.FC<DogCursorProps> = ({ isDark }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMoving, setIsMoving] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+      
+      return mobileRegex.test(userAgent) || isTouchDevice || isSmallScreen;
+    };
+
+    setIsMobile(checkMobile());
+
+    const handleResize = () => {
+      setIsMobile(checkMobile());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    let clickTimeoutId: NodeJS.Timeout;
+    // Don't apply cursor styles on mobile devices
+    if (isMobile) {
+      return;
+    }
+
+    let timeoutId: number;
+    let clickTimeoutId: number;
 
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -30,9 +57,10 @@ export const DogCursor: React.FC<DogCursorProps> = ({ isDark }) => {
     document.addEventListener('mousemove', updatePosition);
     document.addEventListener('click', handleClick);
     
-    // Hide default cursor
+    // Hide default cursor only on desktop
     document.body.style.cursor = 'none';
-    // Apply to all elements with comprehensive mobile support
+    
+    // Apply cursor styles only to desktop
     const style = document.createElement('style');
     style.textContent = `
       *, *::before, *::after, html, body, #root {
@@ -43,25 +71,6 @@ export const DogCursor: React.FC<DogCursorProps> = ({ isDark }) => {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-      }
-      
-      @media (hover: none) and (pointer: coarse) {
-        *, *::before, *::after, html, body, #root {
-          cursor: none !important;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-        }
-      }
-      
-      @media (max-width: 768px) {
-        *, *::before, *::after, html, body, #root {
-          cursor: none !important;
-          -webkit-tap-highlight-color: transparent;
-          -webkit-touch-callout: none;
-          -webkit-user-select: none;
-          user-select: none;
-        }
       }
     `;
     document.head.appendChild(style);
@@ -77,7 +86,12 @@ export const DogCursor: React.FC<DogCursorProps> = ({ isDark }) => {
         style.parentNode.removeChild(style);
       }
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render cursor on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
